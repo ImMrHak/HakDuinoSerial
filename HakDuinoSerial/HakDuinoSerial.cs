@@ -7,15 +7,22 @@ using System.Management;
 
 namespace HakDuinoSerial
 {
-    public class HakDuinoSerial : IHakDuinoSerialCOM
+    /// <summary>
+    /// Provides an interface to communicate with an Arduino over a serial connection.
+    /// This class enables control of mouse movements, clicks, and scrolling actions through buffered serial commands.
+    /// It also supports fetching device information and managing the connection state.
+    /// </summary>
+    public class HakDuinoSerial : IHakDuinoSerial
     {
         private SerialPort arduino;
         private StringBuilder buffer;
+        private List<string> allActions;
 
         public HakDuinoSerial(string COM_PORT, int BAUD_RATE = 250000)
         {
             arduino = new SerialPort(COM_PORT, BAUD_RATE);
             buffer = new StringBuilder();
+            allActions = new List<string>();
         }
 
         public bool OpenConnection()
@@ -24,6 +31,25 @@ namespace HakDuinoSerial
             {
                 if (arduino.IsOpen) return true;
                 arduino.Open();
+                addActionToList("Connection Open");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public bool SendCustomCommand(string command)
+        {
+            try
+            {
+                BufferCommand(command);
+
+                arduino.Write(buffer.ToString());
+                buffer.Clear();
+                addActionToList(command);
                 return true;
             }
             catch (Exception ex)
@@ -63,6 +89,7 @@ namespace HakDuinoSerial
             {
                 string mouseMovement = $"M,{x},{y}";
                 BufferCommand(mouseMovement);
+                addActionToList($"Mouse Mouvement X : {x} Y : {y}");
                 return true;
             }
             catch (Exception ex)
@@ -78,6 +105,7 @@ namespace HakDuinoSerial
             {
                 string mouseClick = $"C,{mouseButton.ToString()}";
                 BufferCommand(mouseClick);
+                addActionToList($"Mouse Click : {mouseButton.ToString()}");
                 return true;
             }
             catch (Exception ex)
@@ -108,6 +136,7 @@ namespace HakDuinoSerial
                     _ => throw new ArgumentException("Invalid scroll direction")
                 };
                 BufferCommand(scrollCommand);
+                addActionToList($"Mouse Scroll Direction : {direction} Amount : {amount}");
                 return true;
             }
             catch (Exception ex)
@@ -179,12 +208,30 @@ namespace HakDuinoSerial
             }
         }
 
+        public List<string> GetCommandHistory()
+        {
+            try
+            {
+                return allActions;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private void addActionToList(string action)
+        {
+            allActions.Add("Action Used => " + action);
+        }
+
         public bool CloseConnection()
         {
             try
             {
                 if (!arduino.IsOpen) return true;
                 arduino.Close();
+                addActionToList($"Connection Closed");
                 return true;
             }
             catch (Exception ex)

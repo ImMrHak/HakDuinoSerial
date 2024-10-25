@@ -6,11 +6,13 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Copyright>© 2024 Mohamed Hakkou</Copyright>
-    <Description>Library for easy communication with Arduino via Serial</Description>
+    <Description>High-speed library for efficient and seamless communication with Arduino over serial connections, supporting rapid command handling and data exchange.</Description>
     <PackAsTool>True</PackAsTool>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/ImMrHak/HakDuinoSerial</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>1.0.1</Version>
+    <Authors>Mohamed Hakkou</Authors>
   </PropertyGroup>
 
   <ItemGroup>
