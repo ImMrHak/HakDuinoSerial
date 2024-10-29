@@ -59,7 +59,7 @@ namespace HakDuinoSerial
             }
         }
 
-        private void BufferCommand(string command)
+        protected void BufferCommand(string command)
         {
             buffer.Append(command + "\n");
         }
@@ -75,69 +75,6 @@ namespace HakDuinoSerial
                     return true;
                 }
                 return false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
-        }
-
-        public bool MoveMouse(int x, int y)
-        {
-            try
-            {
-                string mouseMovement = $"M,{x},{y}";
-                BufferCommand(mouseMovement);
-                addActionToList($"Mouse Mouvement X : {x} Y : {y}");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
-        }
-
-        public bool ClickMouse(HakDuinoEnumButton mouseButton)
-        {
-            try
-            {
-                string mouseClick = $"C,{mouseButton.ToString()}";
-                BufferCommand(mouseClick);
-                addActionToList($"Mouse Click : {mouseButton.ToString()}");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
-        }
-
-        public bool MouseRightClick()
-        {
-            return ClickMouse(HakDuinoEnumButton.RIGHT);
-        }
-
-        public bool MouseLeftClick()
-        {
-            return ClickMouse(HakDuinoEnumButton.LEFT);
-        }
-
-        public bool ScrollWheel(HakDuinoEnumButton direction, int amount)
-        {
-            try
-            {
-                string scrollCommand = direction switch
-                {
-                    HakDuinoEnumButton.SCROLL_UP => $"S,UP,{amount}", // Send the command with proper format
-                    HakDuinoEnumButton.SCROLL_DOWN => $"S,DOWN,{amount}", // Send the command with proper format
-                    _ => throw new ArgumentException("Invalid scroll direction")
-                };
-                BufferCommand(scrollCommand);
-                addActionToList($"Mouse Scroll Direction : {direction} Amount : {amount}");
-                return true;
             }
             catch (Exception ex)
             {
@@ -169,7 +106,7 @@ namespace HakDuinoSerial
             }
         }
 
-        private string GetArduinoInfoWindows()
+        protected string GetArduinoInfoWindows()
         {
             var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_SerialPort");
             foreach (var device in searcher.Get())
@@ -182,7 +119,7 @@ namespace HakDuinoSerial
             return "Arduino not found on Windows.";
         }
 
-        private string GetArduinoInfoLinux()
+        protected string GetArduinoInfoLinux()
         {
             string[] potentialDevices = Directory.GetFiles("/dev/", "ttyUSB*");
             foreach (string device in potentialDevices)
@@ -220,7 +157,7 @@ namespace HakDuinoSerial
             }
         }
 
-        private void addActionToList(string action)
+        protected void addActionToList(string action)
         {
             allActions.Add("Action Used => " + action);
         }

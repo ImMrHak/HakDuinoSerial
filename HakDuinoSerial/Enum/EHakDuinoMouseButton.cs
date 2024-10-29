@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents button options for mouse commands in HakDuinoSerial.
     /// </summary>
-    public enum HakDuinoEnumButton
+    public enum EHakDuinoMouseButton
     {
         /// <summary>
         /// Left mouse button.
