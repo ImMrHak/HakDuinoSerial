@@ -1,5 +1,4 @@
-﻿using HakDuinoSerial.Enum;
-using HakDuinoSerial.Service;
+﻿using HakDuinoSerial.Service;
 using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Text;

@@ -8,7 +8,7 @@ namespace HakDuinoSerial
     /// This class allows for various mouse operations, including moving the mouse, clicking buttons, and scrolling.
     /// It communicates with the underlying hardware through buffered commands over a specified COM port.
     /// </summary>
-    internal class HakDuinoMouse : HakDuinoSerial, IHakDuinoMouse
+    public class HakDuinoMouse : HakDuinoSerial, IHakDuinoMouse
     {
         public HakDuinoMouse(string COM_PORT, int BAUD_RATE = 250000) : base(COM_PORT, BAUD_RATE) { }
 

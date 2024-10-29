@@ -1,5 +1,4 @@
-﻿using HakDuinoSerial.Enum;
-using System.IO.Ports;
+﻿using System.IO.Ports;
 
 namespace HakDuinoSerial.Service
 {
