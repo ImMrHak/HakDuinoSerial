@@ -1,6 +1,6 @@
 ﻿using HakDuinoSerial.Enum;
 
-namespace HakDuinoSerial.Service
+namespace HakDuinoSerial.Serial.Service
 {
     /// <summary>
     /// Defines the interface for keyboard operations in the HakDuino system.
@@ -9,7 +9,7 @@ namespace HakDuinoSerial.Service
     /// Implementations of this interface should provide the necessary logic 
     /// to communicate with the underlying hardware for these operations.
     /// </summary>
-    internal interface IHakDuinoKeyboard
+    internal interface IHakDuinoSerialKeyboard
     {
         /// <summary>
         /// Sends a command to press a specific key.

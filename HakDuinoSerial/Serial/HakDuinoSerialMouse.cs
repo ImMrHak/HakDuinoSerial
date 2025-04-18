@@ -1,16 +1,16 @@
 ﻿using HakDuinoSerial.Enum;
-using HakDuinoSerial.Service;
+using HakDuinoSerial.Serial.Service;
 
-namespace HakDuinoSerial
+namespace HakDuinoSerial.Serial
 {
     /// <summary>
-    /// Represents a mouse controller for the HakDuino system, implementing the <see cref="IHakDuinoMouse"/> interface.
+    /// Represents a mouse controller for the HakDuino system, implementing the <see cref="IHakDuinoSerialMouse"/> interface.
     /// This class allows for various mouse operations, including moving the mouse, clicking buttons, and scrolling.
     /// It communicates with the underlying hardware through buffered commands over a specified COM port.
     /// </summary>
-    public class HakDuinoMouse : HakDuinoSerial, IHakDuinoMouse
+    public class HakDuinoSerialMouse : HakDuinoSerial, IHakDuinoSerialMouse
     {
-        public HakDuinoMouse(string COM_PORT, int BAUD_RATE = 250000) : base(COM_PORT, BAUD_RATE) { }
+        public HakDuinoSerialMouse(string COM_PORT, int BAUD_RATE = 250000) : base(COM_PORT, BAUD_RATE) { }
 
         public bool MoveMouse(int x, int y)
         {

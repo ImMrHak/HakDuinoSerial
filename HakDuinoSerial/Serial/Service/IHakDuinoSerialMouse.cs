@@ -1,6 +1,6 @@
 ﻿using HakDuinoSerial.Enum;
 
-namespace HakDuinoSerial.Service
+namespace HakDuinoSerial.Serial.Service
 {
     /// <summary>
     /// Defines the interface for controlling mouse operations in the HakDuino system.
@@ -8,7 +8,7 @@ namespace HakDuinoSerial.Service
     /// Implementations of this interface should provide the necessary logic to translate these commands
     /// into actions performed by the mouse hardware.
     /// </summary>
-    internal interface IHakDuinoMouse
+    internal interface IHakDuinoSerialMouse
     {
         /// <summary>
         /// Sends a command to move the mouse to the specified X and Y coordinates.

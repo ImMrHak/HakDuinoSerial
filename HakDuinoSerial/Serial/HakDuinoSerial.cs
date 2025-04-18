@@ -1,10 +1,10 @@
-﻿using HakDuinoSerial.Service;
-using System.IO.Ports;
+﻿using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Management;
+using HakDuinoSerial.Serial.Service;
 
-namespace HakDuinoSerial
+namespace HakDuinoSerial.Serial
 {
     /// <summary>
     /// Provides an interface to communicate with an Arduino over a serial connection.

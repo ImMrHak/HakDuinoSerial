@@ -1,6 +1,6 @@
 ﻿using System.IO.Ports;
 
-namespace HakDuinoSerial.Service
+namespace HakDuinoSerial.Serial.Service
 {
     /// <summary>
     /// Defines the contract for interacting with an Arduino over a serial connection.
