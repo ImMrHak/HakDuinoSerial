@@ -14,6 +14,14 @@
         bool OpenConnection();
 
         /// <summary>
+        /// Sends a raw binary command report to the HID device.
+        /// </summary>
+        /// <param name="commandByte">The specific command identifier.</param>
+        /// <param name="dataPayload">Optional byte array containing data for the command.</param>
+        /// <returns>True if the report was sent successfully; otherwise, false.</returns>
+        bool SendRawHidReport(byte commandByte, byte[]? dataPayload = null); // Use nullable byte array
+
+        /// <summary>
         /// Sends a custom command to the HID device immediately.
         /// </summary>
         /// <param name="command">The command string to send to the device.</param>

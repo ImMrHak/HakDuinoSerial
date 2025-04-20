@@ -10,12 +10,12 @@ namespace HakDuinoSerial.HID.Service
     internal interface IHakDuinoHIDMouse
     {
         /// <summary>
-        /// Sends a command to move the mouse to the specified X and Y coordinates.
+        /// Sends a command to move the mouse relatively by the specified delta X and Y.
         /// </summary>
-        /// <param name="x">The target X coordinate for the mouse movement.</param>
-        /// <param name="y">The target Y coordinate for the mouse movement.</param>
+        /// <param name="dx">The relative change in the X coordinate (-127 to 127).</param>
+        /// <param name="dy">The relative change in the Y coordinate (-127 to 127).</param>
         /// <returns>True if the command was successfully sent; otherwise, false.</returns>
-        bool MoveMouse(int x, int y);
+        bool MoveMouse(int dx, int dy); // Parameter names changed for clarity (relative move)
 
         /// <summary>
         /// Sends a command to click the mouse using the specified button.
